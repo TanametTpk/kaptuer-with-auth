@@ -19,6 +19,10 @@
   "homepage": "https://github.com/TanametTpk/kaptuer-with-auth#readme",
   "dependencies": {
     "bcrypt": "^3.0.7",
+    "express-session": "^1.17.0",
+    "kaptuer-open-api": "^2.1.0",
+    "kaptuer-with-mongo": "^1.0.5",
+    "lodash": "^4.17.15",
     "mongoose": "^5.8.7",
     "require-all": "^3.0.0",
     "validator": "^12.1.0"

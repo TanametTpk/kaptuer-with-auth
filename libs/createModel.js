@@ -21,7 +21,7 @@ module.exports = () => {
     }
 
     model = new Schema(model, {timestamps:true})
-    model.pre('save',  (next) => {
+    model.pre('save', function(next){
         this.password = bcrypt.hashSync(this.password, saltRounds);
         next()
     });

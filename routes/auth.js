@@ -3,7 +3,7 @@ module.exports = {
     register:{
         path: "/",
         method: "post",
-        middlewares: ["_getIdentity", "_getKey" , "register_mid"],
+        middlewares: ["register_mid"],
         controller: "auth",
         action: "register"
     },
@@ -11,7 +11,7 @@ module.exports = {
     verify:{
         path: "/login",
         method: "post",
-        middlewares: ["_getIdentity", "_getKey" , "verify_mid"],
+        middlewares: ["verify_mid"],
         controller: "auth",
         action: "verify"
     },
@@ -29,7 +29,7 @@ module.exports = {
     reset_key:{
         path: "/reset-password",
         method: "post",
-        middlewares: ["_getIdentity", "_getKey" , "reset_key_mid"],
+        middlewares: ["reset_key_mid"],
         controller: "auth",
         action: "reset_key"
     },
@@ -37,7 +37,7 @@ module.exports = {
     request_reset:{
         path: "/forgot-password",
         method: "post",
-        middlewares: ["_getIdentity", "request_reset_mid"],
+        middlewares: ["request_reset_mid"],
         controller: "auth",
         action: "request_reset"
     }

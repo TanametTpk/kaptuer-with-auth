@@ -2,7 +2,7 @@ const createAuthSystem = require('./libs/createAuthSystem')
 
 module.exports = ({type}) => {
 
-    let { middlewares, routes, services } = createAuthSystem(type)
+    let { middlewares, routes, services, globals } = createAuthSystem(type)
 
     // for future feature
 
@@ -10,7 +10,8 @@ module.exports = ({type}) => {
 
         middlewares,
         routes,
-        services
+        services,
+        globals
     
     }
 
