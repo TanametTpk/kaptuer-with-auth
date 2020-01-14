@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/TanametTpk/kaptuer-with-auth#readme",
   "dependencies": {
-    "bcrypt": "^3.0.7"
+    "bcrypt": "^3.0.7",
+    "mongoose": "^5.8.7",
+    "require-all": "^3.0.0",
+    "validator": "^12.1.0"
   }
 }

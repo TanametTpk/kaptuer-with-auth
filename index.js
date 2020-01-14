@@ -4,6 +4,8 @@ module.exports = ({type}) => {
 
     let { middlewares, routes, services } = createAuthSystem(type)
 
+    // for future feature
+
     return {
 
         middlewares,
