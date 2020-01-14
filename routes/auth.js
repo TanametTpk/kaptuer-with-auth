@@ -29,7 +29,7 @@ module.exports = {
     reset_key:{
         path: "/reset-password",
         method: "post",
-        middlewares: ["reset_key_mid"],
+        middlewares: ["get_reset_publicKey", "reset_key_mid"],
         controller: "auth",
         action: "reset_key"
     },

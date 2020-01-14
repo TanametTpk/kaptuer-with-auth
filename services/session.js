@@ -18,7 +18,7 @@ module.exports = (model) => {
     }
 
     let reset_key = async(req) => {
-        return req.payload
+        return {success: true}
     }
 
     let request_reset = () => {

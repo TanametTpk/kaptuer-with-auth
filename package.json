@@ -20,6 +20,7 @@
   "dependencies": {
     "bcrypt": "^3.0.7",
     "express-session": "^1.17.0",
+    "jsonwebtoken": "^8.5.1",
     "kaptuer-open-api": "^2.1.0",
     "kaptuer-with-mongo": "^1.0.5",
     "lodash": "^4.17.15",

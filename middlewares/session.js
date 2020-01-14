@@ -1,4 +1,7 @@
 
+const jwt = require('jsonwebtoken');
+const SECRETKEY = "gf!!SA^F6f7a809"
+
 module.exports = (model, options) => {
 
     let _getIdentity = (req, res, next) => {
@@ -74,10 +77,9 @@ module.exports = (model, options) => {
     let reset_key_mid = async(req, res, next) => {
 
         try {
-            let doc = await model.findOne({email: req.body.email});
+            let doc = await model.findOne({email: req._resetInfo.email});
             doc.password = req.body.password
-            let { _id, email } = await doc.save()
-            req._payload = { _id, email }
+            await doc.save()
         } catch (error) {
             next(error)
         }
@@ -87,7 +89,24 @@ module.exports = (model, options) => {
 
     let request_reset_mid = (req, res, next) => {
         // send notify to user
+
+        let key = jwt.sign({email: "hello@mail.com"}, SECRETKEY, {expiresIn:"1h"})
+        // console.log(key);
+        
         next()
+    }
+
+    let get_reset_publicKey = (req, res, next) => {
+
+        jwt.verify(req.query.token, SECRETKEY, function(err, decoded) {
+            
+            if (err) return next(err)
+            
+            req._resetInfo = decoded
+            next()
+
+        })
+
     }
 
     let needAuth = (req, res ,next) => {
@@ -112,7 +131,8 @@ module.exports = (model, options) => {
         reset_key_mid,
         request_reset_mid,
         _authentication,
-        needAuth
+        needAuth,
+        get_reset_publicKey
     }
 
 }
