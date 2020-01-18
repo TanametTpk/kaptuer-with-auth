@@ -22,7 +22,7 @@ let services = {
     }
 }
 
-kaptuer.use(kap({type:"jwt"}))
+kaptuer.use(kap({type:"session"}))
 kaptuer.use(kaptuerDb.connect([], {rewrite:"mongodb://localhost:27017/test"}, {dbVerbose:true}))
 
 kaptuer.setup({

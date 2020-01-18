@@ -2,6 +2,8 @@ const createModel = require('./createModel')
 
 module.exports = (type, options) => {
 
+    if (!options) options = {}
+
     let model = createModel()
 
     let middlewares = require(__dirname + `/../middlewares/${type}`)(model, options)
