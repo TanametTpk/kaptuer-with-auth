@@ -22,7 +22,20 @@ let services = {
     }
 }
 
-kaptuer.use(kap({type:"session"}))
+let extension = {
+    model: {
+        name: String,
+        age: Number
+    },
+    options:{
+        accessible:{
+            get:["name"],
+            update:["name"]
+        }
+    }
+}
+
+kaptuer.use(kap({type:"session",extension}))
 kaptuer.use(kaptuerDb.connect([], {rewrite:"mongodb://localhost:27017/test"}, {dbVerbose:true}))
 
 kaptuer.setup({

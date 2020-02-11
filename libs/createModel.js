@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const validator = require('validator');
 
-module.exports = () => {
+module.exports = (extension_model) => {
 
     let model = {
         email : {
@@ -18,6 +18,7 @@ module.exports = () => {
             },
         },
         password : { type:String, required : true},
+        ...extension_model
     }
 
     model = new Schema(model, {timestamps:true})

@@ -3,7 +3,7 @@ module.exports = (model) => {
 
     let register = (req) => {
 
-        return req.payload
+        return req._payload
 
     }
 

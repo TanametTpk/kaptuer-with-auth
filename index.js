@@ -1,8 +1,10 @@
 const createAuthSystem = require('./libs/createAuthSystem')
 
-module.exports = ({type}) => {
+module.exports = ({type, extension}) => {
 
-    let { middlewares, routes, services, globals } = createAuthSystem(type)
+    let { model, options } = extension
+
+    let { middlewares, routes, services, globals } = createAuthSystem(type, {...options}, model)
 
     // for future feature
 
