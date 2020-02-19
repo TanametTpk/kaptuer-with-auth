@@ -12,6 +12,8 @@ module.exports = (model, options) => {
         reset_key_mid
     } = require('../libs/createReuseLogic')(model, options)
 
+    let {accessible:{store}} = options
+
     SECRETKEY = options.SECRETKEY || SECRETKEY
 
     let getAuthInfo = (req, res, next) => {
@@ -29,11 +31,26 @@ module.exports = (model, options) => {
             let target = await model.findOne({email: req.body["email"]})
 
             let result = target.comparePassword(key)
-            if (result)
-                req.session.user = {
-                    _id: target._id,
-                    email: target.email
-                }
+            if (result){
+
+                let userInfo = {}
+                let keys = Object.keys(target._doc)
+
+                // force adding field
+                store = [ "_id", ...store]
+
+                keys.map((k) => {
+                    if (store.includes(k)){
+                        userInfo = {
+                            ...userInfo,
+                            [k]:target._doc[k]
+                        }
+                    }
+                })
+
+                req.session.user = userInfo
+
+            }
 
             req._verify = result
             
@@ -53,7 +70,7 @@ module.exports = (model, options) => {
     let needAuth = (req, res ,next) => {
 
         if (!req.session.user){
-            res.notFound({meg: "please login"})
+            return res.unauthorized({meg: "please login"})
         }
 
         next()

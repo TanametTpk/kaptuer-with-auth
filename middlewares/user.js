@@ -10,7 +10,7 @@ module.exports = (model, options) => {
             req._payload = target
         }
         catch (error) {
-            next(error)
+            return next(error)
         }
         next()
     }
@@ -31,7 +31,7 @@ module.exports = (model, options) => {
             req._payload = target
         }
         catch (error) {
-            next(error)
+            return next(error)
         }
         next()
     }
@@ -42,7 +42,7 @@ module.exports = (model, options) => {
             req._payload = target
         }
         catch (error) {
-            next(error)
+            return next(error)
         }
         next()
     }
@@ -53,7 +53,7 @@ module.exports = (model, options) => {
             req._payload = target
         }
         catch (error) {
-            next(error)
+            return next(error)
         }
         next()
     }

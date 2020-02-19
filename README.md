@@ -1,3 +1,14 @@
+# What is this?
+
+This package work with kaptuer for build authentication system faster.
+
+# Installation
+
+`npm i --save kaptuer-with-auth`
+
+then import
+
+```
 let kap = require('./index')
 const kaptuer = require('kaptuer-open-api')
 const kaptuerDb = require('kaptuer-with-mongo')
@@ -42,5 +53,21 @@ kaptuer.use(kaptuerDb.connect([], {rewrite:"mongodb://localhost:27017/test"}, {d
 kaptuer.setup({
     routes:routes,
     services:services,
-    port:8080
-}).start()
+    port:<your port>
+}).start() 
+
+```
+
+# Options
+
+### type
+ - session
+ - jwt
+
+### extension
+ - model (model extension field as mongo syntax)
+ - options
+   - accessible
+     - get (attribute that allow to show)
+     - update (attribute that allow to update)
+     - store (attribute that allow to store in token or session)
