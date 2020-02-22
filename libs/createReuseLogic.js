@@ -41,7 +41,7 @@ module.exports = (model, options) => {
         // send notify to user
 
         let key = jwt.sign({email: req.body.email}, SECRETKEY, {expiresIn:"1h"})
-        // console.log(key);
+        req._reset_key = key
         
         next()
     }

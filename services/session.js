@@ -21,7 +21,9 @@ module.exports = (models) => {
         return {success: true}
     }
 
-    let request_reset = () => {
+    let request_reset = (req) => {
+        console.log(req._reset_key);
+        
         // send notify to user
         return {success: true}
     }
