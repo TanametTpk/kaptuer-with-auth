@@ -1,5 +1,5 @@
 
-module.exports = (model) => {
+module.exports = (models) => {
 
     let register = (req) => {
 

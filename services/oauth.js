@@ -7,13 +7,19 @@ module.exports = (models) => {
 
     }
 
-    let verify = async (req) => {
+    let grant = async (req) => {
 
-        return {success: req._verify}
+        return req._payload
 
     }
 
-    let logout = (req) => {
+    let check_token = async (req) => {
+
+        return req._payload
+
+    }
+
+    let revoke = (req) => {
         return { success: true }
     }
 
@@ -28,8 +34,9 @@ module.exports = (models) => {
 
     return {
         register,
-        verify,
-        logout,
+        grant,
+        check_token,
+        revoke,
         reset_key,
         request_reset
     }

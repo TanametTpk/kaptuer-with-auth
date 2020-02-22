@@ -31,6 +31,6 @@ module.exports = (extension_model) => {
         return bcrypt.compareSync(candidatePassword, this.password);
     };
 
-    return mongoose.model('authentication', model)
+    return mongoose.model('user', model)
 
 }

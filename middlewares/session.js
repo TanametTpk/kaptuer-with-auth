@@ -1,7 +1,9 @@
 
 let SECRETKEY = "gf!!SA^F6f7a809"
 
-module.exports = (model, options) => {
+module.exports = (models, options) => {
+
+    let model = models.userModel
 
     let {
         _getIdentity,

@@ -1,5 +1,7 @@
 
-module.exports = (model, options) => {
+module.exports = (models, options) => {
+
+    let model = models.userModel
 
     let { accessible } = options
     if (! accessible) accessible = {get:[],update:[]}
