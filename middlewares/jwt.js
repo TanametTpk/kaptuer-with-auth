@@ -46,6 +46,7 @@ module.exports = (models, options) => {
             let key = req.body["password"]
             let target = await model.findOne({email: req.body["email"]})
 
+            if (!target) res.unauthorized()
             let result = target.comparePassword(key)
             if (result){
 
