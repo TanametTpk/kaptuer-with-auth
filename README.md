@@ -75,6 +75,7 @@ kaptuer.setup({
         - secret (session option)
         - resave (session option)
         - saveUninitialized (session option)
+    - model_name
 
 ### session and jwt url
 - register
