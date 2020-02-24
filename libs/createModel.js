@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const validator = require('validator');
 
-module.exports = (extension_model) => {
+module.exports = (extension_model, model_name) => {
 
     let model = {
         email : {
@@ -31,6 +31,6 @@ module.exports = (extension_model) => {
         return bcrypt.compareSync(candidatePassword, this.password);
     };
 
-    return mongoose.model('user', model)
+    return mongoose.model(model_name, model)
 
 }

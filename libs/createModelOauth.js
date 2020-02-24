@@ -1,10 +1,10 @@
 let mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-module.exports = () => {
+module.exports = (model_name) => {
 
     let model = {
-        user: {type:Schema.Types.ObjectId, ref:'user', require:true},
+        user: {type:Schema.Types.ObjectId, ref:model_name, require:true},
         access_token: {type:String, require:true},
         refresh_token: {type:String, require:true}
     }
