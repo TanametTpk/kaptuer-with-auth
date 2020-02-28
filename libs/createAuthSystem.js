@@ -38,7 +38,7 @@ module.exports = (type, options, extension_model) => {
 
     return {
 
-        model,
+        _model:model,
         middlewares,
         routes:{ [controller_name]:routes, user:user_routes },
         services :{ [controller_name]:services, user: user_services },

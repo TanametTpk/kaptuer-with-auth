@@ -4,12 +4,13 @@ module.exports = ({type, extension}) => {
 
     let { model, options } = extension
 
-    let { middlewares, routes, services, globals } = createAuthSystem(type, {...options}, model)
+    let { _model, middlewares, routes, services, globals } = createAuthSystem(type, {...options}, model)
 
     // for future feature
 
     return {
 
+        _model,
         middlewares,
         routes,
         services,
