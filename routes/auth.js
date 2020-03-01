@@ -16,6 +16,17 @@ module.exports = {
         action: "verify"
     },
 
+    verify_socket:{
+        path: "/__socket_auth",
+        method: "post",
+        middlewares: [],
+        controller: "auth",
+        action: "verify_socket",
+        socket:{
+            event_name:"authenticate"
+        }
+    },
+
     logout:{
 
         path: "/logout",

@@ -1,5 +1,11 @@
+const jwt = require('jsonwebtoken')
+let SECRETKEY = "gf!!SA^F6f7a809"
 
-module.exports = (models) => {
+module.exports = (models, options) => {
+
+    let model = models.userModel
+    let {accessible:{store}} = options
+    SECRETKEY = options.SECRETKEY || SECRETKEY
 
     let register = (req) => {
 
@@ -10,6 +16,42 @@ module.exports = (models) => {
     let verify = async (req) => {
 
         return {success: req._verify, info:req._payload}
+
+    }
+
+    let verify_socket = async (req) => {
+
+        let key = req.body["password"]
+        let target = await model.findOne({email: req.body["email"]})
+
+        if (!target) return {user: null, message:"email not found"}
+
+        let result = target.comparePassword(key)
+        if (result){
+
+            let userInfo = {}
+            let keys = Object.keys(target._doc)
+
+            // force adding field
+            store = [ "_id", ...store]
+
+            keys.map((k) => {
+                if (store.includes(k)){
+                    userInfo = {
+                        ...userInfo,
+                        [k]:target._doc[k]
+                    }
+                }
+            })
+
+            return {
+                user: userInfo,
+                token:jwt.sign(userInfo, SECRETKEY)
+            }
+
+        }
+
+        return {user: null, message: "password is wrong"}
 
     }
 
@@ -33,7 +75,8 @@ module.exports = (models) => {
         verify,
         logout,
         reset_key,
-        request_reset
+        request_reset,
+        verify_socket
     }
 
 }

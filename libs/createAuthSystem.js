@@ -25,12 +25,19 @@ module.exports = (type, options, extension_model) => {
     }
 
     let middlewares = require(__dirname + `/../middlewares/${type}`)(model, options)
-    let services = require(__dirname + `/../services/${type}`)(model)
+    let services = require(__dirname + `/../services/${type}`)(model, options)
     let routes = require(__dirname + `/../routes/${controller_name}`)
 
-    let user_services = require(__dirname + "/../services/user")(model)
+    let user_services = require(__dirname + "/../services/user")(model, options)
     let user_routes = require(__dirname + "/../routes/user")
     let user_middlewares = require(__dirname + `/../middlewares/user`)(model, options)
+
+    let socket_middlewares = {}
+    if (options.socket){
+        if (type === 'oauth') type = "session"
+        socket_middlewares = require(__dirname + `/../socket/${type}`)(model, options)
+    }
+
     middlewares = {
         ...middlewares,
         ...user_middlewares
@@ -44,6 +51,11 @@ module.exports = (type, options, extension_model) => {
         services :{ [controller_name]:services, user: user_services },
         globals: {
             middlewares:["_authentication"]
+        },
+        configs: {
+            socket:{
+                middlewares:socket_middlewares
+            }
         }
     
     }

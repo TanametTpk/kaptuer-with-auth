@@ -9,7 +9,10 @@ let routes = {
             method:"get",
             controller:"hello",
             action:'say',
-            middlewares:["needAuth","getAuthInfo"]
+            middlewares:["needAuth","getAuthInfo"],
+            socket:{
+                event_name:"say"
+            }
         }
     }
 }
@@ -33,10 +36,11 @@ let extension = {
             update:["name"],
             store:["email","name","age"]
         },
+        socket:true
     }
 }
 
-kaptuer.use(kap({type:"oauth",extension}))
+kaptuer.use(kap({type:"session",extension}))
 kaptuer.use(kaptuerDb.connect([], {rewrite:"mongodb://localhost:27017/test"}, {dbVerbose:true}))
 
 kaptuer.setup({
