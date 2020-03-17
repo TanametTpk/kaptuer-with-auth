@@ -23,7 +23,7 @@ module.exports = (models, options) => {
             let update_att = {}
         
             accessible.update.map((i) => {
-                update_att = {
+                if (req.body[i]) update_att = {
                     ...update_att,
                     [i]:req.body[i]
                 }
@@ -51,7 +51,7 @@ module.exports = (models, options) => {
 
     let _user_me_mid = async (req, res, next) => {
         try{
-            let target = await model.findOne(req._userInfo, accessible.get.join(" , "))
+            let target = await model.findOne({_id:req._userInfo._id}, accessible.get.join(" , "))
             req._payload = target
         }
         catch (error) {
