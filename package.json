@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/TanametTpk/kaptuer-with-auth#readme",
   "dependencies": {
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "express-session": "^1.17.0",
     "jsonwebtoken": "^8.5.1",
     "kaptuer-open-api": "^2.1.0",
